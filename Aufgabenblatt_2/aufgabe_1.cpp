@@ -2,7 +2,7 @@
 
 void collatz(int number)
 {
-    std::cout << "Ausgewaehlte Zahl: " << number << std::endl;
+    std::cout << "Input wird nun nach den Regeln der Collatz-Vermutung bearbeitet:" << std::endl;
     while (number != 1 && number != 0 && number != -1 && number != -5 && number != -17)
     {
         if (number % 2 == 0)
@@ -13,18 +13,21 @@ void collatz(int number)
         {
             number = number * 3 + 1;
         }
+        std::cout << number << " ";
     }
-    std::cout << "Endergebnis: " << number << std::endl;
+    std::cout << std::endl
+              << "-> Abbruchbedingung " << number << " erreicht!" << std::endl;
     return;
 }
 
 int main()
 {
-    std::cout << "Bitte geben Sie eine Zahl ein." << std::endl;
+    std::cout << "Bitte geben Sie eine Zahl ein: ";
+    ;
 
-    int number;
-    std::cin >> number;
+    int inputNumber;
+    std::cin >> inputNumber;
 
-    collatz(number);
+    collatz(inputNumber);
     return 0;
 }

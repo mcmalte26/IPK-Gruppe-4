@@ -1,35 +1,32 @@
 #include <iostream>
+#include <vector>
 
 long long fibonacci(int number)
 {
-    // Iternative Methode ist deutlich schneller als rekursive Methode (Funktion ruft sich selbst wieder auf und berechnet n-te Fibonaccizahl)
-    long long fibonacciNumber = 0;
-    long long lastFibonacciNumber = 0;
-    long long penultimateFibonacciNumber = 1;
+    std::vector<unsigned long long> fibonacciNumbers;
+    std::cout << "Fibonacci-Folge bis n = " << number << ": " << std::endl;
 
-    std::cout << "Fibonacci-Folge bis n = " << number << ": " << std::endl
-              << lastFibonacciNumber << " ";
-    for (int i = 0; i <= number; i++)
+    fibonacciNumbers.push_back(0);
+    fibonacciNumbers.push_back(1);
+    std::cout << "0 1 ";
+    for (int n = 2; n <= number; n++)
     {
-        fibonacciNumber = lastFibonacciNumber + penultimateFibonacciNumber;
-        penultimateFibonacciNumber = lastFibonacciNumber;
-        lastFibonacciNumber = fibonacciNumber;
-        std::cout << fibonacciNumber << " ";
+
+        fibonacciNumbers.push_back(fibonacciNumbers[n - 2] + fibonacciNumbers[n - 1]);
+        if (fibonacciNumbers[n] < 0)
+        {
+            std::cout << n;
+        }
+        std::cout << fibonacciNumbers[n] << " ";
     }
-    return fibonacciNumber;
+    return fibonacciNumbers.back();
 }
 
 int main()
 {
-    std::cout << "Geben Sie einen Wert für n an: ";
+    std::cout << "Bis zu welcher Stelle n möchten sie die Fibonacci-Folge sehen? ";
     int n;
     std::cin >> n;
-
-    if (n > 91)
-    {
-        std::cout << "Fehler: n darf nicht größer als 91 sein, da das Ergebnis sonst außerhalb des Wertebereichs des verwendeten Datentyps long long liegen würde." << std::endl;
-        return 1;
-    }
     if (n < 0)
     {
         std::cout << "Fehler: n darf nicht negativ sein." << std::endl;
